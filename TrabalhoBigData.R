@@ -38,12 +38,12 @@ df <- df %>% mutate(AnoPlantio = format(Data.do.Plantio, "%Y"), #Criei mais 2 co
                     MesPlantio = format(Data.do.Plantio, "%m"))
 
 #operações com colunas
-sum(df$ï..Safra) #soma
+sum(df$Area) #soma
 mean(df$Area)#media
 count(df, )
 
 #mudar nome da tabela
-df <- rename(df, Safra = safra)
+df <- rename(df, Safra = ï..Safra)
 
 ############Filter############
 Sinop2122 <- df  %>% filter(UF == 'MT' & Municipio == 'Sinop' & Safra == '2021/2022')
@@ -135,5 +135,27 @@ gee<-ggplot(df, aes(Categoria))
 gee+geom_bar()
 gee + geom_bar(aes(fill = Status))
 
+-----------------------------------------------------------------------------------------------------------------------------------
+#Grafico pegando a todas as categorias e contando de acordo com a categoria de cada uma.
+gb <- ggplot(data = df)+
+  geom_bar(aes(x = Categoria, y = ..count.., fill = Categoria), show.legend = F)+
+  labs(y = "Quantidade de Categorias", x = "Categoria")
 
-aaa
+#Ajusto o grafico em suas bordas na parte de baixo e na parte de cima
+gb <- gb + scale_y_continuous(expand = expansion(add = c(0, 5000)))
+gb
+
+#Função para ajustar no eixo y as medidas numericas
+gb <- gb + scale_y_continuous(labels = scales::number_format())
+gb
+
+gb <- gb + scale_y_continuous(n.breaks = 10, expand = expansion(add = c(0, 5000)))
+gb
+
+
+#Todas Safras referente as cultivares
+gb + facet_wrap(~ Safra)
+
+gb+ facet_wrap(~ UF)
+
+
