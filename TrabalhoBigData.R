@@ -128,7 +128,9 @@ g + geom_bar(aes(fill = Status))
 #Pegando os dados da safra Geal do estado do MAATO GROSSO das categorias, separamos elas por Status
 ge<-ggplot(MatoGrosso, aes(Categoria))
 ge+geom_bar()
-ge + geom_bar(aes(fill = Status))
+ge<-ge + geom_bar(aes(fill = Status))
+ge
+ge + facet_wrap(~ Municipio)
 
 #Pegando os dados de todas safras das categorias, separamos elas por Status
 gee<-ggplot(df, aes(Categoria))
@@ -159,3 +161,4 @@ gb + facet_wrap(~ Safra)
 gb+ facet_wrap(~ UF)
 
 
+#Maior prdutividade da soja por categoria Nacional, estadual e municipal
