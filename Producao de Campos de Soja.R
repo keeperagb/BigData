@@ -48,10 +48,11 @@ ggplot(soja, aes(x = UF, y = Area))+geom_col()+scale_y_continuous(n.breaks = 40,
 #Producao de soja por tipo de semente em comparação com as areas dos estados do Brasil safra 2021/2022
 ggplot(sojaBrasil2122, aes(x = UF, y = Area))+geom_col()+scale_y_continuous(n.breaks = 40, expand = expansion(add = c(0, 5000000)))
 #Imagem: Produção Nacional Area plantada x UF
+sum(sojaMatoGrosso2122$Area)
 
 #---------------------------------------#---------------------------------------#---------------------------------------#
 #Producao de soja por tipo de semente, no Brasil, classificados por area de cada categoria plantada.
-ggplot(soja, aes(x = Categoria, y = Area))+geom_col()+scale_y_continuous(n.breaks = 30, expand = expansion(add = c(0, 5000000)))
+ggplot(soja, aes(x = Categoria, y = Area))+geom_col()+scale_y_continuous(n.breaks = 0, expand = expansion(add = c(0, 5000000)))
 
 #Producao de soja por tipo de semente, no Brasil na safra de 2021/2022, classificados por area de cada categoria plantada.
 ggplot(sojaBrasil2122, aes(x = Categoria, y = Area))+geom_col()+scale_y_continuous(n.breaks = 10, expand = expansion(add = c(0, 500000)))
@@ -59,7 +60,9 @@ ggplot(sojaBrasil2122, aes(x = Categoria, y = Area))+geom_col()+scale_y_continuo
 
 #Producao de soja por tipo de semente, no estado do MT na safra de 2021/2022, classificados por area de cada categoria plantada.
 ggplot(sojaMatoGrosso2122, aes(x = Categoria, y = Area))+geom_col()+scale_y_continuous(n.breaks = 30, expand = expansion(add = c(0, 500000)))
-gMt <- ggplot(sojaMatoGrosso2122, aes(x = Categoria, y = Area))+geom_col()+scale_y_continuous(n.breaks = 30, expand = expansion(add = c(0, 500000)))
+gMt <- sojaMatoGrosso2122 %>% filter(Categoria == 'S1')
+sum(gMt$Area)
+mean(gMt$Area)
 #Imagem: Producao campo semente soja safra 21 22 Mato Grosso
 
 #Producao de soja por tipo de semente, na cidade de Sinop na safra de 2021/2022, classificados por area de cada categoria plantada.
